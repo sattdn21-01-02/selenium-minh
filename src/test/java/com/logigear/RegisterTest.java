@@ -1,29 +1,26 @@
 package com.logigear;
 
 import helper.Constant;
-import helper.Utilities;
 import helper.web_driver_manage.DriverManageFactory;
 import helper.web_driver_manage.DriverManager;
 import helper.web_driver_manage.DriverType;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import page_objects.HomePage;
-import page_objects.LoginPage;
 import page_objects.RegisterPage;
 
 public class RegisterTest {
+
     JavascriptExecutor js;
     DriverManager driverManager;
     WebDriver driver;
 
     @BeforeMethod
     public void beforeMethod() {
-
         driverManager = DriverManageFactory.getDriverManager(DriverType.CHROME);
         Constant.WEBDRIVER = driverManager.getWebDriver();
         Constant.WEBDRIVER.get(Constant.RAILWAY_URL);
@@ -43,9 +40,9 @@ public class RegisterTest {
         HomePage homePage = new HomePage();
         RegisterPage registerPage = homePage.gotoRegisterPage();
         js.executeScript("window.scrollBy(0,500)", "");
-        registerPage.register(Constant.registerEmail, Constant.registerPassword, Constant.registerConfirmPassword, Constant.registerPid);
+        registerPage.register(Constant.REGISTER_EMAIL, Constant.PASSWORD, Constant.REGISTER_CONFIRM_PASSWORD, Constant.REGISTER_PID);
         String actualMsg = homePage.getMessageRegisterConfirmed();
-        String expectedMsg = Constant.registerConfirmMsg;
+        String expectedMsg = Constant.REGISTER_CONFIRM_MSG;
         Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
         //loginPage.gotoLogoutPage();*/
     }
@@ -61,7 +58,7 @@ public class RegisterTest {
                 Constant.failConfirmPasswordRegister,
                 Constant.failPidRegister);
         String actualMsg = registerPage.getErrorMsgRegister();
-        String expectedMsg = Constant.failMsgRegister;
+        String expectedMsg = Constant.FAIL_MSG_REGISTER;
         Assert.assertEquals(actualMsg, expectedMsg);
     }
 
@@ -72,11 +69,11 @@ public class RegisterTest {
         RegisterPage registerPage = homePage.gotoRegisterPage();
         js.executeScript("window.scrollBy(0,500)", "");
         registerPage.register(Constant.failEmailRegister,
-                Constant.registerPassword,
-                Constant.registerConfirmPassword,
-                Constant.registerPid);
+                Constant.REGISTER_PASSWORD,
+                Constant.REGISTER_CONFIRM_PASSWORD,
+                Constant.REGISTER_PID);
         String actualMsg = registerPage.getErrorMsgRegisterEmail();
-        String expectedMsg = Constant.invalidMsgRegisterEmail;
+        String expectedMsg = Constant.INVALID_MSG_REGISTER_EMAIL;
         Assert.assertEquals(actualMsg, expectedMsg);
     }
 }

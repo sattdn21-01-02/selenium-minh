@@ -1,13 +1,11 @@
 package com.logigear;
 
 import helper.Constant;
-import helper.Utilities;
 import helper.web_driver_manage.DriverManageFactory;
 import helper.web_driver_manage.DriverManager;
 import helper.web_driver_manage.DriverType;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,13 +14,13 @@ import page_objects.HomePage;
 import page_objects.LoginPage;
 
 public class LoginTest {
+
     JavascriptExecutor js;
     DriverManager driverManager;
     WebDriver driver;
 
     @BeforeMethod
     public void beforeMethod() {
-
         driverManager = DriverManageFactory.getDriverManager(DriverType.CHROME);
         Constant.WEBDRIVER = driverManager.getWebDriver();
         Constant.WEBDRIVER.get(Constant.RAILWAY_URL);
@@ -42,9 +40,9 @@ public class LoginTest {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.gotoLoginPage();
         js.executeScript("window.scrollBy(0,250)", "");
-        loginPage.login(Constant.username, Constant.password);
+        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
         String actualMsg = homePage.getWelcomeMessage();
-        String expectedMsg = "Welcome " + Constant.username;
+        String expectedMsg = "Welcome " + Constant.USERNAME;
         Assert.assertEquals(actualMsg, expectedMsg, "Welcome message is not displayed as expected");
         loginPage.gotoLogoutPage();
     }
@@ -63,7 +61,7 @@ public class LoginTest {
         loginPage.login(Constant.failUsernameLogin, Constant.failPasswordLogin);
 
         String actualMsg = loginPage.getLblLoginErrorMsg().getText();
-        String expectedMsg = Constant.invalidMsgLogin;
+        String expectedMsg = Constant.INVALID_MSG_LOGIN;
 
         Assert.assertEquals(actualMsg, expectedMsg);
     }
@@ -79,11 +77,11 @@ public class LoginTest {
 
         js.executeScript("window.scrollBy(0,500)", "");
 
-        loginPage.login(Constant.failUsernameLogin, Constant.password);
+        loginPage.login(Constant.failUsernameLogin, Constant.PASSWORD);
         js.executeScript("window.scrollBy(0,500)", "");
 
         String actualMsg = loginPage.getLblLoginErrorMsg().getText();
-        String expectedMsg = Constant.invalidMsgLogin;
+        String expectedMsg = Constant.INVALID_MSG_LOGIN;
         Assert.assertEquals(actualMsg, expectedMsg);
 
     }
@@ -102,11 +100,11 @@ public class LoginTest {
         loginPage.login("", "");
         js.executeScript("window.scrollBy(0,500)", "");
         String actualMsgUsername = loginPage.getErrorLoginUsername();
-        String expectedMsg2 = Constant.invalidMsgLoginUsername;
+        String expectedMsg2 = Constant.INVALID_MSG_LOGIN_USERNAME;
 
         Assert.assertEquals(actualMsgUsername, expectedMsg2);
         String actualMsgPassword = loginPage.getErrorLoginPassword();
-        String expectedMsgPassword = Constant.invalidMsgLoginPassword;
+        String expectedMsgPassword = Constant.INVALID_MSG_LOGIN_PASSWORD;
         Assert.assertEquals(actualMsgPassword, expectedMsgPassword);
     }
 }

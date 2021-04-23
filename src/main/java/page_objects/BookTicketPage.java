@@ -74,15 +74,4 @@ public class BookTicketPage extends GeneralPage {
         //selectTicketAmount.selectByValue(ticketAmount);
     }
 
-
-    public void chooseArrive(String depart) {
-        String arrive = "";
-        switch (depart) {
-            case "1":
-                arrive = "";
-                break;
-        }
-    }
-
-
 }

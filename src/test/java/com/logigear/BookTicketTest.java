@@ -19,14 +19,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class BookTicketTest extends GeneralPage {
+public class BookTicketTest {
+
     JavascriptExecutor js;
     DriverManager driverManager;
     WebDriver driver;
 
     @BeforeMethod
     public void beforeMethod() {
-
         driverManager = DriverManageFactory.getDriverManager(DriverType.CHROME);
         Constant.WEBDRIVER = driverManager.getWebDriver();
         Constant.WEBDRIVER.get(Constant.RAILWAY_URL);
@@ -46,7 +46,7 @@ public class BookTicketTest extends GeneralPage {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.gotoLoginPage();
         js.executeScript("window.scrollBy(0,500)", "");
-        loginPage.login(Constant.username, Constant.password);
+        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
         BookTicketPage bookTicketPage = loginPage.gotoBookTicketPage();
         js.executeScript("window.scrollBy(0,500)", "");
         bookTicketPage.bookTicket("10", "2", "4", "3", "1");
@@ -62,7 +62,8 @@ public class BookTicketTest extends GeneralPage {
         HomePage homePage = new HomePage();
         LoginPage loginPage = homePage.gotoLoginPage();
         js.executeScript("window.scrollBy(0,500)", "");
-        loginPage.login(Constant.username, Constant.password);
+        loginPage.login(Constant.USERNAME, Constant.PASSWORD);
+
         //Prepare the path of excel file
         BookTicketPage bookTicketPage = loginPage.gotoBookTicketPage();
         String filePath = System.getProperty("user.dir") + "/src/main/resources/";
@@ -75,10 +76,6 @@ public class BookTicketTest extends GeneralPage {
             //System.out.println(listObj);
             BookTicketPage bookTicketPages = new BookTicketPage();
             bookTicketPages.bookTicket(listObj.get(0), listObj.get(1), listObj.get(2), listObj.get(3), listObj.get(4));
-            /*for(String objBook: listObj) {
-                BookTicketPage bookTicketPages = new BookTicketPage();
-                bookTicketPages.bookTicket(objBook,objBook,objBook,objBook,objBook);
-            }*/
         }
     }
 }

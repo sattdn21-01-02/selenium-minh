@@ -24,9 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelFile {
 
     public ArrayList<ArrayList<String>> readExcel(String filePath, String fileName, String sheetName) throws IOException {
-
         //Create an object of File class to open xlsx file
-
         ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 
         File file = new File(filePath + "\\" + fileName);
