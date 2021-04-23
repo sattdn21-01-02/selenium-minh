@@ -59,16 +59,19 @@ public class BookTicketPage extends GeneralPage {
         selectDate.selectByVisibleText(date);
         // selectDate.selectByValue(date);
         Select selectDepart = new Select(bookTicketPage.getSelectDepartFrom());
-        selectDepart.selectByValue(departFrom);
+        selectDepart.selectByVisibleText(departFrom);
+        //selectDepart.selectByValue(departFrom);
         List<WebElement> arrives = this.getAllSelectArriveAt();
         for (WebElement arrive : arrives) {
             if (!arrive.isSelected()) arrive.click();
 
         }
         Select selectSeatType = new Select(bookTicketPage.getSelectSeatType());
-        selectSeatType.selectByValue(seatType);
+        selectSeatType.selectByVisibleText(seatType);
+        //selectSeatType.selectByValue(seatType);
         Select selectTicketAmount = new Select(bookTicketPage.getSelectTicketAmount());
-        selectTicketAmount.selectByValue(ticketAmount);
+        selectTicketAmount.selectByVisibleText(ticketAmount);
+        //selectTicketAmount.selectByValue(ticketAmount);
     }
 
 
