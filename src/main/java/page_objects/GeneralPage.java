@@ -1,7 +1,10 @@
 package page_objects;
 
+import helper.Constant;
+import helper.element.Label;
 import helper.element.Tab;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class GeneralPage {
 
@@ -20,6 +23,8 @@ public class GeneralPage {
     private final Tab tabRegister = new Tab(By.cssSelector("a[href='/Account/Register.cshtml']"));
     private final Tab tabLogin = new Tab(By.cssSelector("a[href='/Account/Login.cshtml']"));
     private final Tab tabLogout = new Tab(By.cssSelector("a[href='/Account/Logout']"));
+    private final Label lblFooterBanner = new Label(By.cssSelector("[style^='opacity: 0.9']"));
+    private final Label lblFooter = new Label(By.cssSelector("[onmouseover='S_ssac();']"));
 
 
     public void goToHomePage() {
@@ -66,4 +71,13 @@ public class GeneralPage {
         this.tabLogout.click();
     }
 
+    public void disableFooterBanner() {
+        this.lblFooter.disableElement();
+        this.lblFooterBanner.disableElement();
+    }
+
+    public void scrollPage() {
+        JavascriptExecutor jse = (JavascriptExecutor) Constant.WEBDRIVER;
+        jse.executeScript("window.scrollBy(0,250)");
+    }
 }

@@ -10,6 +10,6 @@ public class TextBox extends BaseElement{
 
     public void enterText(CharSequence text) {
         findElement().clear();
-        findElement().sendKeys();
+        findElement().sendKeys(text);
     }
 }

@@ -2,6 +2,7 @@ package helper.element;
 
 import helper.Constant;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -40,5 +41,10 @@ public class BaseElement {
 
     public boolean isSelected() {
         return findElement().isSelected();
+    }
+
+    public void disableElement() {
+        JavascriptExecutor js = (JavascriptExecutor) Constant.WEBDRIVER;
+        js.executeScript("arguments[0].setAttribute('style', 'display:none')", findElement());
     }
 }

@@ -21,7 +21,7 @@ public class GeneralTest {
 
     @AfterTest
     public void tearDown() {
-        Constant.WEBDRIVER.manage().deleteAllCookies();
+        //Constant.WEBDRIVER.manage().deleteAllCookies();
         Constant.DRIVER_MANAGER.quitWebDriver();
     }
 }
