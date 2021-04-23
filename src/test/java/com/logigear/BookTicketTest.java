@@ -74,7 +74,7 @@ public class BookTicketTest extends GeneralPage {
         for (ArrayList<String> listObj : listBookTicket) {
             //System.out.println(listObj);
             BookTicketPage bookTicketPages = new BookTicketPage();
-            bookTicketPages.bookTicket(listObj.get(0),listObj.get(1),listObj.get(2),listObj.get(3),listObj.get(4));
+            bookTicketPages.bookTicket(listObj.get(0), listObj.get(1), listObj.get(2), listObj.get(3), listObj.get(4));
             /*for(String objBook: listObj) {
                 BookTicketPage bookTicketPages = new BookTicketPage();
                 bookTicketPages.bookTicket(objBook,objBook,objBook,objBook,objBook);
