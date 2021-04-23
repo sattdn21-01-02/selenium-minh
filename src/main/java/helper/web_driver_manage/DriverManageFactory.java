@@ -18,4 +18,9 @@ public class DriverManageFactory {
         }
         return driverManager;
     }
+
+
+    public enum DriverType {
+        CHROME, FIREFOX, IE;
+    }
 }
